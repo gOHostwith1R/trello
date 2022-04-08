@@ -3,13 +3,12 @@
     background-color: grey;
     border-radius: 5px;
     font-size: 0;
-    margin-right: 20px;
     padding: 2px;
 }
 
 .horizontal__menu:before {
     position: absolute;
-    left: -10px;
+    left: -7px;
     top: 0;
     content: '';
 
@@ -21,11 +20,23 @@
 
 .horizontal__menu:after {
     position: absolute;
-    left: 10px;
+    left: 7px;
     top: 0;
     content: '';
     background-color: grey;
     border-radius: 5px;
     font-size: 0;
     padding: 2px;
+}
+
+.wrapper-horizontal__menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+}
+
+.wrapper-horizontal__menu:hover {
+    background-color: #091e4214;
 }

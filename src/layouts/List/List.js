@@ -1,12 +1,12 @@
 import React from 'react';
 import './styles.css';
-import { AddCard, Title } from '../../components';
+import { AddCard, Textarea } from '../../components';
 import { HeaderList } from '../../components/HeaderList/HeaderList';
 
 export const List = () => (
   <div className="list">
     <HeaderList>
-      <Title type="list__title">To Do</Title>
+      <Textarea type="list__header" placeholder="To Do" value="To Do" />
     </HeaderList>
     <AddCard />
   </div>
