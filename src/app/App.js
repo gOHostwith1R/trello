@@ -1,5 +1,8 @@
 import './styles.css';
+import { List } from '../layouts';
 
 export const App = () => (
-    <h1>App</h1>
-)
+  <>
+    <List />
+  </>
+);

@@ -1,0 +1,1 @@
+export { HorizontalMenuIcon } from './HorizontalMenuIcon';

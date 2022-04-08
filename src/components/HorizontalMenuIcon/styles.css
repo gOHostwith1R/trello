@@ -1,0 +1,31 @@
+.horizontal__menu {
+    position: relative;
+    background-color: grey;
+    border-radius: 5px;
+    font-size: 0;
+    margin-right: 20px;
+    padding: 2px;
+}
+
+.horizontal__menu:before {
+    position: absolute;
+    left: -10px;
+    top: 0;
+    content: '';
+
+    background-color: grey;
+    border-radius: 5px;
+    font-size: 0;
+    padding: 2px;
+}
+
+.horizontal__menu:after {
+    position: absolute;
+    left: 10px;
+    top: 0;
+    content: '';
+    background-color: grey;
+    border-radius: 5px;
+    font-size: 0;
+    padding: 2px;
+}
