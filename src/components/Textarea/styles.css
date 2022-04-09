@@ -20,3 +20,17 @@
     background-color: #ffffff;
     outline: none;
 }
+
+.hidden {
+    display: none;
+}
+
+.add__title__textarea {
+    background-color: #fafbfc;
+    color: #172b4d;
+    font-weight: 400;
+}
+
+.add__title__textarea:focus {
+    outline: none;
+}
