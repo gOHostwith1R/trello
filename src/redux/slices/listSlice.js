@@ -12,6 +12,7 @@ const initialState = {
       id: 1,
       name: 'To Do 1',
       isAdd: false,
+      cards: [],
     },
   ],
   openNewList: false,
@@ -35,8 +36,19 @@ const listSlice = createSlice({
         state.openNewList = false;
       }
     },
+    createCard(state, action) {
+      state.lists[action.payload.id].cards.push({ name: action.payload.name });
+    },
+    createList(state, action) {
+      state.lists.push({
+        name: action.payload,
+        id: state.lists.length,
+        cards: [],
+        isAdd: false,
+      });
+    },
   },
 });
 
 export default listSlice.reducer;
-export const { setOpen, setCLose } = listSlice.actions;
+export const { setOpen, setCLose, createCard, createList } = listSlice.actions;

@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import './styles.css';
 
-export const Card = () => {
+export const Card = ({ name }) => {
   const [visibility, setVisibility] = useState(false);
   return (
     <div
       className="card"
       onMouseEnter={() => setVisibility(true)}
       onMouseLeave={() => setVisibility(false)}>
-      <p>Card</p>
+      <p>{name}</p>
       <div className="pen__wrapper">
         {visibility && (
           <img

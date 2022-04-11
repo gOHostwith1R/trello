@@ -6,7 +6,7 @@ import { AddCard } from '../AddCard';
 import { AddTitle } from '../AddTitle';
 import { ListWrapper } from '../ListWrapper';
 
-export const List = ({ name, isAdd, id }) => {
+export const List = ({ name, isAdd, id, cards }) => {
   return (
     <ListWrapper>
       <HeaderList>
@@ -17,7 +17,9 @@ export const List = ({ name, isAdd, id }) => {
           autoFocus={0}
         />
       </HeaderList>
-      <Card />
+      {cards.map(card => (
+        <Card name={card.name} />
+      ))}
       {isAdd ? <AddTitle id={id} /> : <AddCard id={id} />}
     </ListWrapper>
   );

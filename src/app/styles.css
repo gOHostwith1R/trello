@@ -1,5 +1,9 @@
 .app {
-    display: flex;
-    gap: 50px;
-    align-items: flex-start;
+  height: 100vh;
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+  background: url('../images/background.jpg') no-repeat 0 0;
+  background-size: cover;
+  overflow: auto;
 }

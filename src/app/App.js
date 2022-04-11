@@ -8,7 +8,13 @@ export const App = () => {
   return (
     <div className="app">
       {lists.map(list => (
-        <List name={list.name} key={list.id} id={list.id} isAdd={list.isAdd} />
+        <List
+          name={list.name}
+          key={list.id}
+          id={list.id}
+          isAdd={list.isAdd}
+          cards={list.cards}
+        />
       ))}
       {openNewList ? (
         <ListWrapper>
