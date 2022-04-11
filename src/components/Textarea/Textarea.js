@@ -1,6 +1,8 @@
 import React from 'react';
 import './styles.css';
 import classNames from 'classnames';
+import { useDispatch } from 'react-redux';
+import { setCLose } from '../../redux/slices/listSlice';
 
 export const Textarea = ({
   type,
@@ -8,8 +10,10 @@ export const Textarea = ({
   value,
   visibility = true,
   rows,
-  handleAddCloseTitle,
+  autoFocus,
+  id,
 }) => {
+  const dispatch = useDispatch();
   const handleChangeTextarea = e => {
     e.target.style.height = 'inherit';
     e.target.style.height = `${e.target.scrollHeight}px`;
@@ -20,7 +24,7 @@ export const Textarea = ({
   };
   return (
     <textarea
-      autoFocus
+      autoFocus={autoFocus}
       className={classNames('textarea', {
         list__header: type === 'list__header',
         hidden: !visibility,
@@ -31,7 +35,13 @@ export const Textarea = ({
       defaultValue={value}
       onChange={handleChangeTextarea}
       onKeyDown={handleKeydown}
-      onBlur={handleAddCloseTitle}
+      onBlur={() => {
+        if (id !== undefined) {
+          dispatch(setCLose(id));
+        } else {
+          dispatch(setCLose());
+        }
+      }}
     />
   );
 };

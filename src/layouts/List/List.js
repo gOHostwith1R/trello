@@ -1,26 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './styles.css';
 import { Textarea } from '../../components';
 import { HeaderList } from '../../components/HeaderList/HeaderList';
 import { AddCard } from '../AddCard';
 import { AddTitle } from '../AddTitle';
+import { ListWrapper } from '../ListWrapper';
 
-export const List = () => {
-  const [visibility, setVisibility] = useState(false);
-  const handleAddCloseTitle = params => {
-    setVisibility(params === 'open');
-  };
-
+export const List = ({ name, isAdd, id }) => {
   return (
-    <div className="list">
+    <ListWrapper>
       <HeaderList>
-        <Textarea type="list__header" placeholder="To Do" value="To Do" />
+        <Textarea
+          type="list__header"
+          placeholder={name}
+          value={name}
+          autoFocus={0}
+        />
       </HeaderList>
-      {!visibility ? (
-        <AddCard handleAddCloseTitle={handleAddCloseTitle} />
-      ) : (
-        <AddTitle handleAddCloseTitle={handleAddCloseTitle} />
-      )}
-    </div>
+      {isAdd ? <AddTitle id={id} /> : <AddCard id={id} />}
+    </ListWrapper>
   );
 };

@@ -1,18 +1,18 @@
 import React from 'react';
 import './styles.css';
-import { PlusIcon } from '../../components';
 import classNames from 'classnames';
+import { PlusIcon } from '../../components';
 import { useDispatch } from 'react-redux';
 import { setOpen } from '../../redux/slices/listSlice';
 
-export const AddCard = ({ id }) => {
+export const AddList = () => {
   const dispatch = useDispatch();
   return (
     <div
-      className={classNames('add__card')}
-      onClick={() => dispatch(setOpen({ name: 'card', id }))}>
+      className={classNames('add__list')}
+      onClick={() => dispatch(setOpen({ name: 'list' }))}>
       <PlusIcon />
-      Add card
+      Add another list
     </div>
   );
 };

@@ -3,17 +3,23 @@ import './styles.css';
 import { Button, CanselIcon, Textarea } from '../../components';
 import classNames from 'classnames';
 
-export const AddTitle = ({ handleAddCloseTitle }) => (
+export const AddTitle = ({
+  id,
+  rows = 3,
+  placeholder = 'Enter a title for this card',
+  buttonTitle = 'Add card',
+}) => (
   <div className={classNames('add__title')}>
     <Textarea
-      placeholder="Enter a title for this card..."
+      placeholder={placeholder}
       type="add__title"
-      rows={3}
-      handleAddCloseTitle={handleAddCloseTitle}
+      rows={rows}
+      autoFocus={1}
+      id={id}
     />
     <div className="wrapper__button">
-      <Button>Add card</Button>
-      <CanselIcon handleAddCloseTitle={handleAddCloseTitle} />
+      <Button>{buttonTitle}</Button>
+      <CanselIcon />
     </div>
   </div>
 );
