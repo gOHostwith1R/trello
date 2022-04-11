@@ -6,6 +6,7 @@ const initialState = {
       id: 0,
       name: 'To Do',
       isAdd: false,
+      cards: [{ name: 'Card 1' }, { name: 'Card 2' }],
     },
     {
       id: 1,

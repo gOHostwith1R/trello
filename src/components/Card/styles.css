@@ -1,0 +1,28 @@
+.card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 5px;
+}
+
+.card:hover {
+    background-color: #ebe2e1;
+}
+
+.pen__card {
+    width: 12px;
+    height: 12px;
+}
+
+.pen__wrapper {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pen__wrapper:hover {
+    background-color: #091e4214;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import { Textarea } from '../../components';
+import { Card, Textarea } from '../../components';
 import { HeaderList } from '../../components/HeaderList/HeaderList';
 import { AddCard } from '../AddCard';
 import { AddTitle } from '../AddTitle';
@@ -17,6 +17,7 @@ export const List = ({ name, isAdd, id }) => {
           autoFocus={0}
         />
       </HeaderList>
+      <Card />
       {isAdd ? <AddTitle id={id} /> : <AddCard id={id} />}
     </ListWrapper>
   );
