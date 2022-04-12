@@ -3,6 +3,7 @@ import './styles.css';
 import { Button, Textarea } from '../../components';
 import { useDispatch } from 'react-redux';
 import { closeEditCard, editCard } from '../../redux/slices/listSlice';
+import { DeleteCard } from '../../components/DeleteCard';
 
 export const EditCard = ({ value, idCard, idList }) => {
   const dispatch = useDispatch();
@@ -23,9 +24,12 @@ export const EditCard = ({ value, idCard, idList }) => {
           handleTextarea={handleTextarea}
         />
       </div>
-      <Button type="edit__button" handleSaveEditCard={handleSaveEditCard}>
-        Save
-      </Button>
+      <div className="wrapper__buttons">
+        <Button type="edit__button" handleSaveEditCard={handleSaveEditCard}>
+          Save
+        </Button>
+        <DeleteCard idCard={idCard} idList={idList} />
+      </div>
     </div>
   );
 };

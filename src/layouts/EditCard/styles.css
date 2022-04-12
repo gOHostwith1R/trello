@@ -12,5 +12,10 @@
     bottom: -60px;
     left: 5px;
     align-items: flex-start;
-    z-index: 999;
+    z-index: 90;
+}
+
+.wrapper__buttons {
+    display: flex;
+    gap: 20px;
 }

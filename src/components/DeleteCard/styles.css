@@ -1,0 +1,9 @@
+.delete__card {
+    position: relative;
+    z-index: 100;
+    background-color: #0009;
+    color: #ffffff;
+    padding: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+}

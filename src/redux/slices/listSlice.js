@@ -74,6 +74,10 @@ const listSlice = createSlice({
       }
       state.lists[idList].cards[idCard].name = text;
     },
+    deleteCard(state, action) {
+      const { idCard, idList } = action.payload;
+      state.lists[idList].cards.splice(idCard, 1);
+    },
   },
 });
 
@@ -86,4 +90,5 @@ export const {
   setEditCard,
   editCard,
   closeEditCard,
+  deleteCard,
 } = listSlice.actions;
