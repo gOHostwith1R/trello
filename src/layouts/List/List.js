@@ -18,7 +18,13 @@ export const List = ({ name, isAdd, id, cards }) => {
         />
       </HeaderList>
       {cards.map((card, index) => (
-        <Card name={card.name} key={index} isEdit={card.isEdit} />
+        <Card
+          name={card.name}
+          key={index}
+          isEdit={card.isEdit}
+          idCard={card.id}
+          idList={id}
+        />
       ))}
       {isAdd ? <AddTitle id={id} /> : <AddCard id={id} />}
     </ListWrapper>

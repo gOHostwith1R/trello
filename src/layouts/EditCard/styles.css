@@ -1,0 +1,16 @@
+.edit__card {
+    background-color: #ffffff;
+    width: 220px;
+    padding: 5px;
+}
+
+.wrapper__edit-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: absolute;
+    bottom: -60px;
+    left: 5px;
+    align-items: flex-start;
+    z-index: 999;
+}

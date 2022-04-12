@@ -28,8 +28,8 @@ export const Textarea = ({
         list__header: type === 'list__header',
         hidden: !visibility,
         add__title__textarea: type === 'add__title',
-        edit: type === 'edit',
         textarea__card: type === 'textarea__card',
+        edit__card_textarea: type === 'edit__card',
       })}
       onInput={handleChangeTextarea}
       onKeyDown={handleKeydown}>

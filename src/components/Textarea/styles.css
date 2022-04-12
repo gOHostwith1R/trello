@@ -39,19 +39,10 @@
 }
 
 .add__title__textarea:focus,
-.edit:focus {
+.edit__card_textarea:focus {
     outline: none;
 }
 
-.edit {
-    font-weight: 400;
-    z-index: 999;
-    top: 10px;
-    box-shadow: 0 1px 0 #091e4240;;
-    width: 248px;
-    background-color: #ffffff;
-}
-
-.textarea__card {
-    height: auto;
+.edit__card_textarea {
+    min-height: 80px;
 }

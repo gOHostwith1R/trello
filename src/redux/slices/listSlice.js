@@ -10,6 +10,7 @@ const initialState = {
         { id: 0, name: 'Card 1', isEdit: false },
         { id: 1, name: 'Card 2', isEdit: false },
         {
+          id: 2,
           name: 'Card 3 and Etc bla bla vla bla bla vla bla vldddddddddddddddddddddddddddddddddddddddddd',
           isEdit: false,
         },
@@ -58,8 +59,31 @@ const listSlice = createSlice({
         isAdd: false,
       });
     },
+    setEditCard(state, action) {
+      const { idCard, idList } = action.payload;
+      state.lists[idList].cards[idCard].isEdit = true;
+    },
+    closeEditCard(state, action) {
+      const { idCard, idList } = action.payload;
+      state.lists[idList].cards[idCard].isEdit = false;
+    },
+    editCard(state, action) {
+      const { idCard, idList, text } = action.payload;
+      if (text === '') {
+        return;
+      }
+      state.lists[idList].cards[idCard].name = text;
+    },
   },
 });
 
 export default listSlice.reducer;
-export const { setOpen, setCLose, createCard, createList } = listSlice.actions;
+export const {
+  setOpen,
+  setCLose,
+  createCard,
+  createList,
+  setEditCard,
+  editCard,
+  closeEditCard,
+} = listSlice.actions;

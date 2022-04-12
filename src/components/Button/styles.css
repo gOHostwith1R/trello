@@ -6,3 +6,7 @@
     border-radius: 3px;
     padding: 5px 10px;
 }
+
+.edit__button {
+    z-index: 10;
+}

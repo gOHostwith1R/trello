@@ -6,7 +6,7 @@ export const App = () => {
   const lists = useSelector(state => state.list.lists);
   const openNewList = useSelector(state => state.list.openNewList);
   return (
-    <div className="app">
+    <div className="app edit__card-app">
       {lists.map(list => (
         <List
           name={list.name}
