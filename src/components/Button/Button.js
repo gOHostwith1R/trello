@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 export const Button = ({
   children,
-  handleCreateTitleList,
+  handleCreate,
   type,
   handleSaveEditCard,
 }) => (
@@ -16,7 +16,7 @@ export const Button = ({
       if (type === 'edit__button') {
         handleSaveEditCard();
       } else {
-        handleCreateTitleList();
+        handleCreate();
       }
     }}>
     {children}

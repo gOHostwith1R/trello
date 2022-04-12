@@ -18,11 +18,13 @@
     cursor: text;
 }
 
-.list__header {
+.list__header,
+.create__board{
     font-weight: 600;
 }
 
-.list__header:focus {
+.list__header:focus,
+.create__board:focus {
     box-shadow: inset 0 0 0 2px #0079bf;
     background-color: #ffffff;
     outline: none;
@@ -45,4 +47,9 @@
 
 .edit__card_textarea {
     min-height: 80px;
+}
+
+.create__board {
+    box-shadow: inset 0 0 0 2px #0079bf;
+    background-color: #ffffff;
 }

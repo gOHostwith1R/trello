@@ -20,7 +20,7 @@ export const AddTitle = ({
       dispatch(setCLose());
     }
   };
-  const handleCreateTitleList = idList => {
+  const handleCreate = idList => {
     if (name !== '') {
       if (idList !== undefined) {
         dispatch(createCard({ selectedBoard, idList, name }));
@@ -45,9 +45,7 @@ export const AddTitle = ({
         handleTextarea={handleTextarea}
       />
       <div className="wrapper__button">
-        <Button handleCreateTitleList={() => handleCreateTitleList(idList)}>
-          {buttonTitle}
-        </Button>
+        <Button handleCreate={handleCreate}>{buttonTitle}</Button>
         <CanselIcon handleClose={() => handleClose(idList)} />
       </div>
     </div>

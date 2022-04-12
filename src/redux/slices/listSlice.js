@@ -43,6 +43,7 @@ const initialState = {
   ],
   isListActionsOpen: false,
   openNewList: false,
+  creteNewBoard: false,
   selectedBoard: 0,
 };
 
@@ -126,6 +127,18 @@ const listSlice = createSlice({
       const { idList, selectedBoard } = action.payload;
       state.boards[selectedBoard].lists[idList].isListActionsOpen = false;
     },
+    openCreateBoard(state) {
+      state.creteNewBoard = true;
+    },
+    closeCreateBoard(state) {
+      state.creteNewBoard = false;
+    },
+    createBoard(state, action) {
+      state.boards.push({
+        name: action.payload,
+        id: state.boards.length,
+      });
+    },
   },
 });
 
@@ -142,4 +155,7 @@ export const {
   deleteList,
   openListActions,
   closeListActions,
+  closeCreateBoard,
+  openCreateBoard,
+  createBoard,
 } = listSlice.actions;

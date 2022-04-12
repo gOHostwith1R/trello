@@ -30,6 +30,7 @@ export const Textarea = ({
         add__title__textarea: type === 'add__title',
         textarea__card: type === 'textarea__card',
         edit__card_textarea: type === 'edit__card',
+        create__board: type === 'create__board',
       })}
       onInput={handleChangeTextarea}
       onKeyDown={handleKeydown}>

@@ -24,7 +24,6 @@ export const App = () => {
         {openNewList ? (
           <ListWrapper>
             <AddTitle
-              rows={1}
               placeholder="Enter list title.."
               buttonTitle="Add list"
               selectedBoard={selectedBoard}

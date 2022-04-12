@@ -1,0 +1,32 @@
+.add__board {
+  width: 240px;
+  height: 20%;
+  background-color: #f09278;
+  position: absolute;
+  top: 10px;
+  right: -250px;
+  z-index: 99;
+  padding: 10px 10px;
+}
+
+.title__board {
+  width: 220px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid #091e4221;
+  font-size: 15px;
+  color: #5e6c84;
+  text-align: center;
+}
+
+.header__board {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.body__board {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  gap: 20px;
+}
