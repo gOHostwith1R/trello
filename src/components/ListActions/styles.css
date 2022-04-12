@@ -1,0 +1,33 @@
+.list__actions {
+    position: absolute;
+    background-color: #ffffff;
+    left: 290px;
+    z-index: 999;
+    padding: 10px 10px;
+    width: 250px;
+    text-align: center;
+}
+
+.title__list_actions {
+    width: 220px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #091e4221;
+    font-size: 15px;
+    color: #5e6c84;
+}
+
+.header__list__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.elem__list_actions {
+    text-align: start;
+    padding: 4px;
+    color: #5e6c84;
+}
+
+.elem__list_actions:hover {
+    background-color: #091e4214;
+}

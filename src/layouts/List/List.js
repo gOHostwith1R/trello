@@ -1,15 +1,15 @@
 import React from 'react';
 import './styles.css';
-import { Card, Textarea } from '../../components';
+import { Card, ListActions, Textarea } from '../../components';
 import { HeaderList } from '../../components/HeaderList/HeaderList';
 import { AddCard } from '../AddCard';
 import { AddTitle } from '../AddTitle';
 import { ListWrapper } from '../ListWrapper';
 
-export const List = ({ name, isAdd, id, cards }) => {
+export const List = ({ name, isAdd, id, cards, isListActionsOpen }) => {
   return (
     <ListWrapper>
-      <HeaderList>
+      <HeaderList idList={id} isListActionsOpen={isListActionsOpen}>
         <Textarea
           type="list__header"
           placeholder={name}
@@ -27,6 +27,7 @@ export const List = ({ name, isAdd, id, cards }) => {
         />
       ))}
       {isAdd ? <AddTitle id={id} /> : <AddCard id={id} />}
+      {isListActionsOpen && <ListActions idList={id} />}
     </ListWrapper>
   );
 };

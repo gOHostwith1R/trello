@@ -14,6 +14,7 @@ export const App = () => {
           id={list.id}
           isAdd={list.isAdd}
           cards={list.cards}
+          isListActionsOpen={list.isListActionsOpen}
         />
       ))}
       {openNewList ? (

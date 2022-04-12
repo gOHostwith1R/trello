@@ -23,6 +23,7 @@ const initialState = {
       cards: [],
     },
   ],
+  isListActionsOpen: false,
   openNewList: false,
 };
 
@@ -57,6 +58,7 @@ const listSlice = createSlice({
         id: state.lists.length,
         cards: [],
         isAdd: false,
+        isListActionsOpen: false,
       });
     },
     setEditCard(state, action) {
@@ -78,6 +80,18 @@ const listSlice = createSlice({
       const { idCard, idList } = action.payload;
       state.lists[idList].cards.splice(idCard, 1);
     },
+    deleteList(state, action) {
+      const { payload } = action;
+      state.lists.splice(payload, 1);
+    },
+    openListActions(state, action) {
+      const { payload } = action;
+      state.lists[payload].isListActionsOpen = true;
+    },
+    closeListActions(state, action) {
+      const { payload } = action;
+      state.lists[payload].isListActionsOpen = false;
+    },
   },
 });
 
@@ -91,4 +105,7 @@ export const {
   editCard,
   closeEditCard,
   deleteCard,
+  deleteList,
+  openListActions,
+  closeListActions,
 } = listSlice.actions;
