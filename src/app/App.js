@@ -10,17 +10,18 @@ export const App = () => {
     <div className="app">
       <Navigation boards={boards} />
       <div className="main__content">
-        {boards[selectedBoard].lists.map(list => (
-          <List
-            name={list.name}
-            key={list.id}
-            idList={list.id}
-            isAdd={list.isAdd}
-            cards={list.cards}
-            isListActionsOpen={list.isListActionsOpen}
-            selectedBoard={selectedBoard}
-          />
-        ))}
+        {boards.length !== 0 &&
+          boards[selectedBoard].lists.map(list => (
+            <List
+              name={list.name}
+              key={list.id}
+              idList={list.id}
+              isAdd={list.isAdd}
+              cards={list.cards}
+              isListActionsOpen={list.isListActionsOpen}
+              selectedBoard={selectedBoard}
+            />
+          ))}
         {openNewList ? (
           <ListWrapper>
             <AddTitle

@@ -5,6 +5,7 @@ const initialState = {
     {
       name: 'First board',
       id: 0,
+      isEditBoard: false,
       lists: [
         {
           id: 0,
@@ -31,14 +32,8 @@ const initialState = {
     {
       id: 1,
       name: 'Second board',
-      lists: [
-        {
-          id: 0,
-          name: 'To Do',
-          isAdd: false,
-          cards: [{ id: 0, name: 'Card 1', isEdit: false }],
-        },
-      ],
+      isEditBoard: false,
+      lists: [],
     },
   ],
   isListActionsOpen: false,
@@ -105,7 +100,7 @@ const listSlice = createSlice({
       const { idCard, idList, selectedBoard } = action.payload;
       state.boards[selectedBoard].lists[idList].cards.splice(idCard, 1);
       state.boards[selectedBoard].lists[idList].cards.forEach(card => {
-        if (idCard <= card.id) {
+        if (idCard <= card.id && card.id !== 0) {
           card.id--;
         }
       });
@@ -114,7 +109,7 @@ const listSlice = createSlice({
       const { idList, selectedBoard } = action.payload;
       state.boards[selectedBoard].lists.splice(idList, 1);
       state.boards[selectedBoard].lists.forEach(list => {
-        if (idList <= list.id) {
+        if (idList <= list.id && list.id !== 0) {
           list.id--;
         }
       });
@@ -137,6 +132,27 @@ const listSlice = createSlice({
       state.boards.push({
         name: action.payload,
         id: state.boards.length,
+        isEditBoard: false,
+        lists: [],
+      });
+    },
+    openEditBoard(state, action) {
+      state.boards[action.payload].isEditBoard = true;
+    },
+    closeEditBoard(state, action) {
+      state.boards[action.payload].isEditBoard = false;
+    },
+    editBoard(state, action) {
+      const { idBoard, text } = action.payload;
+      state.boards[idBoard].name = text;
+    },
+    deleteBoard(state, action) {
+      const { payload } = action;
+      state.boards.splice(payload, 1);
+      state.boards.forEach(board => {
+        if (payload >= board.id && board.id !== 0) {
+          board.id--;
+        }
       });
     },
   },
@@ -158,4 +174,8 @@ export const {
   closeCreateBoard,
   openCreateBoard,
   createBoard,
+  openEditBoard,
+  editBoard,
+  closeEditBoard,
+  deleteBoard,
 } = listSlice.actions;

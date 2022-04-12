@@ -1,8 +1,8 @@
 .navigation {
-    position: relative;
     padding: 20px 3px;
     background-color: #f09278;
     width: 260px;
+    position: relative;
 }
 
 .title__navigation {

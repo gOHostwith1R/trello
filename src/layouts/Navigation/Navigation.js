@@ -19,7 +19,12 @@ export const Navigation = ({ boards }) => {
       </div>
       <div className="wrapper__board__names">
         {boards.map(board => (
-          <Board name={board.name} key={board.id} />
+          <Board
+            name={board.name}
+            key={board.id}
+            idBoard={board.id}
+            isEdit={board.isEditBoard}
+          />
         ))}
       </div>
       {creteNewBoard && <AddBoard />}

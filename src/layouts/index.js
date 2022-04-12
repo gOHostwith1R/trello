@@ -6,3 +6,4 @@ export { ListWrapper } from './ListWrapper';
 export { EditCard } from './EditCard';
 export { Navigation } from './Navigation';
 export { AddBoard } from './AddBoard';
+export { EditBoard } from './EditBoard';
