@@ -1,4 +1,10 @@
 .app {
+  display: flex;
+  width: 100%;
+}
+
+.main__content {
+  padding: 10px 10px;
   height: 100vh;
   display: flex;
   gap: 50px;
@@ -6,8 +12,5 @@
   background: url('../images/background.jpg') no-repeat 0 0;
   background-size: cover;
   overflow-x: auto;
-}
-
-.edit__card-app {
-  z-index: 0;
+  flex-grow: 1;
 }

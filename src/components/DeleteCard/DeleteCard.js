@@ -1,12 +1,13 @@
 import React from 'react';
 import './styles.css';
 import { useDispatch } from 'react-redux';
-import { deleteCard } from '../../redux/slices/listSlice';
+import { closeEditCard, deleteCard } from '../../redux/slices/listSlice';
 
-export const DeleteCard = ({ idCard, idList }) => {
+export const DeleteCard = ({ idCard, idList, selectedBoard }) => {
   const dispatch = useDispatch();
   const handleDeleteCard = (idCard, idList) => {
-    dispatch(deleteCard({ idCard, idList }));
+    dispatch(closeEditCard({ idCard, idList, selectedBoard }));
+    dispatch(deleteCard({ idCard, idList, selectedBoard }));
   };
   return (
     <div

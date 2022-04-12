@@ -1,4 +1,5 @@
 .plus-icon {
+    cursor: pointer;
     position: relative;
     margin: 0 15px 0 8px;
 }
@@ -20,4 +21,8 @@
 }
 .plus-icon::after {
     transform: translate(-50%, -50%);
+}
+
+.navigation__plus::before, .navigation__plus::after {
+    background-color: #ffffff;
 }

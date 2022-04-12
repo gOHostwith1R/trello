@@ -6,7 +6,8 @@ import { useDispatch } from 'react-redux';
 import { createCard, createList, setCLose } from '../../redux/slices/listSlice';
 
 export const AddTitle = ({
-  id,
+  idList,
+  selectedBoard,
   placeholder = 'Enter a title for this card',
   buttonTitle = 'Add card',
 }) => {
@@ -14,19 +15,18 @@ export const AddTitle = ({
   const [name, setName] = useState('');
   const handleClose = id => {
     if (id !== undefined) {
-      dispatch(setCLose(id));
+      dispatch(setCLose({ idList, selectedBoard }));
     } else {
       dispatch(setCLose());
     }
   };
-
-  const handleCreateTitleList = id => {
+  const handleCreateTitleList = idList => {
     if (name !== '') {
-      if (id !== undefined) {
-        dispatch(createCard({ id, name }));
-        dispatch(setCLose(id));
+      if (idList !== undefined) {
+        dispatch(createCard({ selectedBoard, idList, name }));
+        dispatch(setCLose({ idList, selectedBoard }));
       } else {
-        dispatch(createList(name));
+        dispatch(createList({ name, selectedBoard }));
         dispatch(setCLose());
       }
     }
@@ -40,15 +40,15 @@ export const AddTitle = ({
       <Textarea
         placeholder={placeholder}
         type="add__title"
-        id={id}
+        id={idList}
         typeHandle="card-title"
         handleTextarea={handleTextarea}
       />
       <div className="wrapper__button">
-        <Button handleCreateTitleList={() => handleCreateTitleList(id)}>
+        <Button handleCreateTitleList={() => handleCreateTitleList(idList)}>
           {buttonTitle}
         </Button>
-        <CanselIcon handleClose={() => handleClose(id)} />
+        <CanselIcon handleClose={() => handleClose(idList)} />
       </div>
     </div>
   );

@@ -6,10 +6,20 @@ import { AddCard } from '../AddCard';
 import { AddTitle } from '../AddTitle';
 import { ListWrapper } from '../ListWrapper';
 
-export const List = ({ name, isAdd, id, cards, isListActionsOpen }) => {
+export const List = ({
+  name,
+  isAdd,
+  idList,
+  cards,
+  isListActionsOpen,
+  selectedBoard,
+}) => {
   return (
     <ListWrapper>
-      <HeaderList idList={id} isListActionsOpen={isListActionsOpen}>
+      <HeaderList
+        idList={idList}
+        isListActionsOpen={isListActionsOpen}
+        selectedBoard={selectedBoard}>
         <Textarea
           type="list__header"
           placeholder={name}
@@ -23,11 +33,18 @@ export const List = ({ name, isAdd, id, cards, isListActionsOpen }) => {
           key={index}
           isEdit={card.isEdit}
           idCard={card.id}
-          idList={id}
+          idList={idList}
+          selectedBoard={selectedBoard}
         />
       ))}
-      {isAdd ? <AddTitle id={id} /> : <AddCard id={id} />}
-      {isListActionsOpen && <ListActions idList={id} />}
+      {isAdd ? (
+        <AddTitle idList={idList} selectedBoard={selectedBoard} />
+      ) : (
+        <AddCard idList={idList} selectedBoard={selectedBoard} />
+      )}
+      {isListActionsOpen && (
+        <ListActions idList={idList} selectedBoard={selectedBoard} />
+      )}
     </ListWrapper>
   );
 };

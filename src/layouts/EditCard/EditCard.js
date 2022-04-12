@@ -5,15 +5,15 @@ import { useDispatch } from 'react-redux';
 import { closeEditCard, editCard } from '../../redux/slices/listSlice';
 import { DeleteCard } from '../../components/DeleteCard';
 
-export const EditCard = ({ value, idCard, idList }) => {
+export const EditCard = ({ value, idCard, idList, selectedBoard }) => {
   const dispatch = useDispatch();
   const [text, setText] = useState('');
   const handleTextarea = text => {
     setText(text);
   };
   const handleSaveEditCard = () => {
-    dispatch(editCard({ idCard, idList, text }));
-    dispatch(closeEditCard({ idCard, idList }));
+    dispatch(editCard({ idCard, idList, text, selectedBoard }));
+    dispatch(closeEditCard({ idCard, idList, selectedBoard }));
   };
   return (
     <div className="wrapper__edit-card">
@@ -28,7 +28,11 @@ export const EditCard = ({ value, idCard, idList }) => {
         <Button type="edit__button" handleSaveEditCard={handleSaveEditCard}>
           Save
         </Button>
-        <DeleteCard idCard={idCard} idList={idList} />
+        <DeleteCard
+          idCard={idCard}
+          idList={idList}
+          selectedBoard={selectedBoard}
+        />
       </div>
     </div>
   );

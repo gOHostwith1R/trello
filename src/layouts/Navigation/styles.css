@@ -1,0 +1,22 @@
+.navigation {
+    padding: 20px 3px;
+    background-color: #f09278;
+    width: 260px;
+}
+
+.title__navigation {
+    color: #FFFFFF;
+    font-size: 16px;
+}
+
+.navigation__wrapper {
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.wrapper__board__names {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

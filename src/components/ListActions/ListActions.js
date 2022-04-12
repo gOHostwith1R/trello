@@ -4,10 +4,10 @@ import { CanselIcon } from '../CanselIcon';
 import { useDispatch } from 'react-redux';
 import { closeListActions, deleteList } from '../../redux/slices/listSlice';
 
-export const ListActions = ({ idList }) => {
+export const ListActions = ({ idList, selectedBoard }) => {
   const dispatch = useDispatch();
   const handleClose = () => {
-    dispatch(closeListActions(idList));
+    dispatch(closeListActions({ idList, selectedBoard }));
   };
   return (
     <div className="list__actions">
@@ -18,7 +18,7 @@ export const ListActions = ({ idList }) => {
       <div className="body__list__actions">
         <p
           className="elem__list_actions"
-          onClick={() => dispatch(deleteList(idList))}>
+          onClick={() => dispatch(deleteList({ idList, selectedBoard }))}>
           Delete List
         </p>
       </div>
