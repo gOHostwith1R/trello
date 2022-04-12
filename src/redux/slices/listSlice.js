@@ -6,7 +6,14 @@ const initialState = {
       id: 0,
       name: 'To Do',
       isAdd: false,
-      cards: [{ name: 'Card 1' }, { name: 'Card 2' }],
+      cards: [
+        { id: 0, name: 'Card 1', isEdit: false },
+        { id: 1, name: 'Card 2', isEdit: false },
+        {
+          name: 'Card 3 and Etc bla bla vla bla bla vla bla vldddddddddddddddddddddddddddddddddddddddddd',
+          isEdit: false,
+        },
+      ],
     },
     {
       id: 1,
@@ -37,7 +44,11 @@ const listSlice = createSlice({
       }
     },
     createCard(state, action) {
-      state.lists[action.payload.id].cards.push({ name: action.payload.name });
+      state.lists[action.payload.id].cards.push({
+        name: action.payload.name,
+        isEdit: false,
+        id: state.lists[action.payload.id].cards.length,
+      });
     },
     createList(state, action) {
       state.lists.push({

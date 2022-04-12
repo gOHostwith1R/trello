@@ -7,7 +7,6 @@ import { createCard, createList, setCLose } from '../../redux/slices/listSlice';
 
 export const AddTitle = ({
   id,
-  rows = 3,
   placeholder = 'Enter a title for this card',
   buttonTitle = 'Add card',
 }) => {
@@ -41,9 +40,8 @@ export const AddTitle = ({
       <Textarea
         placeholder={placeholder}
         type="add__title"
-        rows={rows}
-        autoFocus={1}
         id={id}
+        typeHandle="card-title"
         handleTextarea={handleTextarea}
       />
       <div className="wrapper__button">

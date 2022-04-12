@@ -1,18 +1,25 @@
 .textarea {
     border: none;
     resize: none;
-    border-radius: 3px;
     background-color: inherit;
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 500;
     width: 100%;
     padding: 6px 5px;
     max-height: 200px;
     word-break: break-all;
 }
 
+.textarea[placeholder]:empty:before {
+    content: attr(placeholder);
+}
+
 .textarea:focus {
     cursor: text;
+}
+
+.list__header {
+    font-weight: 600;
 }
 
 .list__header:focus {
@@ -31,6 +38,20 @@
     font-weight: 400;
 }
 
-.add__title__textarea:focus {
+.add__title__textarea:focus,
+.edit:focus {
     outline: none;
+}
+
+.edit {
+    font-weight: 400;
+    z-index: 999;
+    top: 10px;
+    box-shadow: 0 1px 0 #091e4240;;
+    width: 248px;
+    background-color: #ffffff;
+}
+
+.textarea__card {
+    height: auto;
 }

@@ -5,5 +5,10 @@
   align-items: flex-start;
   background: url('../images/background.jpg') no-repeat 0 0;
   background-size: cover;
-  overflow: auto;
+  overflow-x: auto;
+}
+
+.edit__card-app {
+  z-index: 0;
+  opacity: 0.5;
 }

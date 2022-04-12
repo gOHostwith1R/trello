@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import './styles.css';
+import { Textarea } from '../Textarea';
 
-export const Card = ({ name }) => {
+export const Card = ({ name, isEdit }) => {
   const [visibility, setVisibility] = useState(false);
   return (
     <div
       className="card"
       onMouseEnter={() => setVisibility(true)}
       onMouseLeave={() => setVisibility(false)}>
-      <p>{name}</p>
+      <Textarea type="textarea__card" value={name} edit={isEdit} />
       <div className="pen__wrapper">
         {visibility && (
           <img

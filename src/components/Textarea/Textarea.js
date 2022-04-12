@@ -4,35 +4,36 @@ import classNames from 'classnames';
 
 export const Textarea = ({
   type,
-  placeholder,
   value,
   visibility = true,
-  rows,
-  autoFocus,
+  placeholder,
+  edit = true,
   handleTextarea,
 }) => {
   const handleChangeTextarea = e => {
-    e.target.style.height = 'inherit';
-    e.target.style.height = `${e.target.scrollHeight}px`;
-    handleTextarea(e.target.value);
+    if (type !== 'list__header') {
+      handleTextarea(e.target.textContent);
+    }
   };
 
   const handleKeydown = e => {
     e.key === 'Enter' && e.preventDefault();
   };
   return (
-    <textarea
-      autoFocus={autoFocus}
+    <div
+      contentEditable={edit}
+      placeholder={placeholder}
+      suppressContentEditableWarning={true}
       className={classNames('textarea', {
         list__header: type === 'list__header',
         hidden: !visibility,
         add__title__textarea: type === 'add__title',
+        edit: type === 'edit',
+        textarea__card: type === 'textarea__card',
       })}
-      placeholder={placeholder}
-      rows={rows || 1}
-      defaultValue={value}
-      onChange={handleChangeTextarea}
-      onKeyDown={handleKeydown}
-    />
+      onInput={handleChangeTextarea}
+      onKeyDown={handleKeydown}>
+      {value}
+    </div>
   );
 };
