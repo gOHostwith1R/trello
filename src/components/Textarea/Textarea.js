@@ -10,6 +10,7 @@ export const Textarea = ({
   edit = true,
   handleTextarea,
   name,
+  onClick,
 }) => {
   const handleChangeTextarea = e => {
     if (type !== 'list__header') {
@@ -22,6 +23,7 @@ export const Textarea = ({
   };
   return (
     <div
+      onClick={onClick}
       name={name}
       contentEditable={edit}
       placeholder={placeholder}

@@ -8,6 +8,7 @@ import {
 } from '../../redux/slices/listSlice';
 import { EditCard } from '../../layouts';
 import { Modal } from '../Modal';
+import { Draggable } from 'react-beautiful-dnd';
 
 export const Card = ({
   name,
@@ -18,6 +19,7 @@ export const Card = ({
   isOpenModal,
   description,
   listName,
+  index,
 }) => {
   const [visibility, setVisibility] = useState(false);
   const dispatch = useDispatch();
@@ -26,34 +28,45 @@ export const Card = ({
   };
   return (
     <>
-      <div
-        className="card"
-        onMouseEnter={() => setVisibility(true)}
-        onMouseLeave={() => setVisibility(false)}
-        onClick={handleOpenModalDescription}>
-        <Textarea type="textarea__card" value={name} edit={isEdit} />
-        <div
-          className="pen__wrapper"
-          onClick={() =>
-            dispatch(setEditCard({ idCard, idList, selectedBoard }))
-          }>
-          {visibility && (
-            <img
-              className="pen__card"
-              src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/32/000000/external-pen-education-dreamstale-lineal-dreamstale.png"
-              alt="pen"
+      <Draggable draggableId={String(idCard)} index={index}>
+        {provided => (
+          <div
+            {...provided.dragHandleProps}
+            {...provided.draggableProps}
+            ref={provided.innerRef}
+            className="card"
+            onMouseEnter={() => setVisibility(true)}
+            onMouseLeave={() => setVisibility(false)}>
+            <Textarea
+              type="textarea__card"
+              value={name}
+              edit={isEdit}
+              onClick={handleOpenModalDescription}
             />
-          )}
-        </div>
-        {isEdit && (
-          <EditCard
-            value={name}
-            idCard={idCard}
-            idList={idList}
-            selectedBoard={selectedBoard}
-          />
+            <div
+              className="pen__wrapper"
+              onClick={() =>
+                dispatch(setEditCard({ idCard, idList, selectedBoard }))
+              }>
+              {visibility && (
+                <img
+                  className="pen__card"
+                  src="https://img.icons8.com/external-dreamstale-lineal-dreamstale/32/000000/external-pen-education-dreamstale-lineal-dreamstale.png"
+                  alt="pen"
+                />
+              )}
+            </div>
+            {isEdit && (
+              <EditCard
+                value={name}
+                idCard={idCard}
+                idList={idList}
+                selectedBoard={selectedBoard}
+              />
+            )}
+          </div>
         )}
-      </div>
+      </Draggable>
       {isOpenModal && (
         <Modal
           name={name}

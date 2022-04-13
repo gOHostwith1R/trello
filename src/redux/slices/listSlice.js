@@ -8,26 +8,26 @@ const initialState = {
       isEditBoard: false,
       lists: [
         {
-          id: 0,
+          id: `list-${0}`,
           name: 'To Do',
           isAdd: false,
           cards: [
             {
-              id: 0,
+              id: `list-${0}-card-${0}`,
               name: 'Card 1',
               isEdit: false,
               description: '',
               isOpenModal: false,
             },
             {
-              id: 1,
+              id: `list-${0}-card-${1}`,
               name: 'Card 2',
               isEdit: false,
               description: '',
               isOpenModal: false,
             },
             {
-              id: 2,
+              id: `list-${0}-card-${2}`,
               name: 'Card 3 and Etc bla bla vla bla bla vla bla vldddddddddddddddddddddddddddddddddddddddddd',
               isEdit: false,
               description: 'bla',
@@ -36,7 +36,7 @@ const initialState = {
           ],
         },
         {
-          id: 1,
+          id: `list-${1}`,
           name: 'To Do 1',
           isAdd: false,
           cards: [],
@@ -63,35 +63,37 @@ const listSlice = createSlice({
     setOpen(state, action) {
       const { idList, selectedBoard, name } = action.payload;
       if (name === 'card') {
-        state.boards[selectedBoard].lists[idList].isAdd = true;
+        const numIdList = idList.slice(-1);
+        state.boards[selectedBoard].lists[numIdList].isAdd = true;
       } else {
         state.openNewList = true;
       }
     },
     setCLose(state, action) {
       if (action.payload !== undefined) {
-        state.boards[action.payload.selectedBoard].lists[
-          action.payload.idList
-        ].isAdd = false;
+        const { idList, selectedBoard } = action.payload;
+        const numIdList = idList.slice(-1);
+        state.boards[selectedBoard].lists[numIdList].isAdd = false;
       } else {
         state.openNewList = false;
       }
     },
     createCard(state, action) {
       const { idList, selectedBoard, name } = action.payload;
-      state.boards[selectedBoard].lists[idList].cards.push({
+      const numIdList = idList.slice(-1);
+      state.boards[selectedBoard].lists[numIdList].cards.push({
         name: name,
         isEdit: false,
         description: '',
         isOpenModal: false,
-        id: state.boards[selectedBoard].lists[idList].cards.length,
+        id: `list-${numIdList}-card-${state.boards[selectedBoard].lists[numIdList].cards.length}`,
       });
     },
     createList(state, action) {
       const { selectedBoard, name } = action.payload;
       state.boards[selectedBoard].lists.push({
         name: name,
-        id: state.boards[selectedBoard].lists.length,
+        id: `list-${state.boards[selectedBoard].lists.length}`,
         cards: [],
         isAdd: false,
         isListActionsOpen: false,
@@ -99,44 +101,63 @@ const listSlice = createSlice({
     },
     setEditCard(state, action) {
       const { idCard, idList, selectedBoard } = action.payload;
-      state.boards[selectedBoard].lists[idList].cards[idCard].isEdit = true;
+      const numIdCard = idCard.slice(-1);
+      const numIdList = idList.slice(-1);
+      state.boards[selectedBoard].lists[numIdList].cards[
+        numIdCard
+      ].isEdit = true;
     },
     closeEditCard(state, action) {
       const { idCard, idList, selectedBoard } = action.payload;
-      state.boards[selectedBoard].lists[idList].cards[idCard].isEdit = false;
+      const numIdCard = idCard.slice(-1);
+      const numIdList = idList.slice(-1);
+      state.boards[selectedBoard].lists[numIdList].cards[
+        numIdCard
+      ].isEdit = false;
     },
     editCard(state, action) {
       const { idCard, idList, text, selectedBoard } = action.payload;
+      const numIdCard = idCard.slice(-1);
+      const numIdList = idList.slice(-1);
       if (text === '') {
         return;
       }
-      state.boards[selectedBoard].lists[idList].cards[idCard].name = text;
+      state.boards[selectedBoard].lists[numIdList].cards[numIdCard].name = text;
     },
     deleteCard(state, action) {
       const { idCard, idList, selectedBoard } = action.payload;
-      state.boards[selectedBoard].lists[idList].cards.splice(idCard, 1);
-      state.boards[selectedBoard].lists[idList].cards.forEach(card => {
-        if (idCard <= card.id && card.id !== 0) {
-          card.id--;
+      const numIdList = idList.slice(-1);
+      const numIdCard = idCard.slice(-1);
+      state.boards[selectedBoard].lists[numIdList].cards.splice(numIdCard, 1);
+      state.boards[selectedBoard].lists[numIdList].cards.forEach(card => {
+        let numIdCardInner = card.id.slice(-1);
+        if (numIdCard <= numIdCardInner && numIdCardInner !== 0) {
+          numIdCardInner--;
+          card.id = `list-${numIdList}-card-${numIdCardInner}`;
         }
       });
     },
     deleteList(state, action) {
       const { idList, selectedBoard } = action.payload;
-      state.boards[selectedBoard].lists.splice(idList, 1);
+      const numIdList = idList.slice(-1);
+      state.boards[selectedBoard].lists.splice(numIdList, 1);
       state.boards[selectedBoard].lists.forEach(list => {
-        if (idList <= list.id && list.id !== 0) {
-          list.id--;
+        let numIdListInner = list.id.slice(-1);
+        if (numIdList <= numIdListInner && numIdListInner !== 0) {
+          numIdListInner--;
+          list.id = `list-${numIdListInner}`;
         }
       });
     },
     openListActions(state, action) {
       const { idList, selectedBoard } = action.payload;
-      state.boards[selectedBoard].lists[idList].isListActionsOpen = true;
+      const numIdList = idList.slice(-1);
+      state.boards[selectedBoard].lists[numIdList].isListActionsOpen = true;
     },
     closeListActions(state, action) {
       const { idList, selectedBoard } = action.payload;
-      state.boards[selectedBoard].lists[idList].isListActionsOpen = false;
+      const numIdList = idList.slice(-1);
+      state.boards[selectedBoard].lists[numIdList].isListActionsOpen = false;
     },
     openCreateBoard(state) {
       state.creteNewBoard = true;
@@ -177,25 +198,62 @@ const listSlice = createSlice({
     },
     openModalDescriptionCard(state, action) {
       const { idCard, idList, selectedBoard } = action.payload;
-      state.boards[selectedBoard].lists[idList].cards[
-        idCard
+      console.log(idCard);
+      const numIdCard = idCard.slice(-1);
+      console.log(idCard);
+      const numIdList = idList.slice(-1);
+      state.boards[selectedBoard].lists[numIdList].cards[
+        numIdCard
       ].isOpenModal = true;
     },
     closeModalDescriptionCard(state, action) {
       const { idCard, idList, selectedBoard } = action.payload;
-      state.boards[selectedBoard].lists[idList].cards[
-        idCard
+      const numIdCard = idCard.slice(-1);
+      const numIdList = idList.slice(-1);
+      state.boards[selectedBoard].lists[numIdList].cards[
+        numIdCard
       ].isOpenModal = false;
     },
     saveDescriptionNameCard(state, action) {
       const { idCard, idList, selectedBoard, textDescription, textName } =
         action.payload;
+      const numIdCard = idCard.slice(-1);
+      const numIdList = idList.slice(-1);
       if (textName === '') {
       } else {
-        state.boards[selectedBoard].lists[idList].cards[idCard].name = textName;
+        state.boards[selectedBoard].lists[numIdList].cards[numIdCard].name =
+          textName;
       }
-      state.boards[selectedBoard].lists[idList].cards[idCard].description =
-        textDescription;
+      state.boards[selectedBoard].lists[numIdList].cards[
+        numIdCard
+      ].description = textDescription;
+    },
+    sort(state, action) {
+      const {
+        droppableIdStart,
+        droppableIdEnd,
+        droppableIndexStart,
+        droppableIndexEnd,
+        draggableId,
+        selectedBoard,
+      } = action.payload;
+      if (droppableIdStart === droppableIdEnd) {
+        const list = state.boards[selectedBoard].lists.find(
+          list => droppableIdStart === list.id,
+        );
+        const card = list.cards.splice(droppableIndexStart, 1);
+        list.cards.splice(droppableIndexEnd, 0, ...card);
+      }
+      if (droppableIdStart !== droppableIdEnd) {
+        const listStart = state.boards[selectedBoard].lists.find(
+          list => droppableIdStart === list.id,
+        );
+        const card = listStart.cards.splice(droppableIndexStart, 1);
+        const listEnd = state.boards[selectedBoard].lists.find(
+          list => droppableIdEnd === list.id,
+        );
+        listEnd.cards.splice(droppableIndexEnd, 0, ...card);
+      }
     },
   },
 });
@@ -224,4 +282,5 @@ export const {
   openModalDescriptionCard,
   closeModalDescriptionCard,
   saveDescriptionNameCard,
+  sort,
 } = listSlice.actions;
