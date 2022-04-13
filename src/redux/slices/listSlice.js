@@ -198,9 +198,8 @@ const listSlice = createSlice({
     },
     openModalDescriptionCard(state, action) {
       const { idCard, idList, selectedBoard } = action.payload;
-      console.log(idCard);
+      console.log(idCard, idList);
       const numIdCard = idCard.slice(-1);
-      console.log(idCard);
       const numIdList = idList.slice(-1);
       state.boards[selectedBoard].lists[numIdList].cards[
         numIdCard
@@ -234,25 +233,55 @@ const listSlice = createSlice({
         droppableIdEnd,
         droppableIndexStart,
         droppableIndexEnd,
-        draggableId,
         selectedBoard,
+        type,
       } = action.payload;
+      if (type === 'list') {
+        const endListId =
+          state.boards[selectedBoard].lists[droppableIndexEnd].id;
+        state.boards[selectedBoard].lists[droppableIndexEnd].id =
+          state.boards[selectedBoard].lists[droppableIndexStart].id;
+        const listStart = state.boards[selectedBoard].lists.splice(
+          droppableIndexStart,
+          1,
+        );
+        listStart[0].id = endListId;
+        listStart[0].cards.forEach(elem => {
+          const id = elem.id.slice(-1);
+          elem.id = `list-${droppableIndexEnd}-card-${id}`;
+        });
+        state.boards[selectedBoard].lists.splice(
+          droppableIndexEnd,
+          0,
+          ...listStart,
+        );
+        return;
+      }
       if (droppableIdStart === droppableIdEnd) {
         const list = state.boards[selectedBoard].lists.find(
           list => droppableIdStart === list.id,
         );
-        const card = list.cards.splice(droppableIndexStart, 1);
-        list.cards.splice(droppableIndexEnd, 0, ...card);
+        const cardStart = list.cards.splice(droppableIndexStart, 1);
+        list.cards.splice(droppableIndexEnd, 0, ...cardStart);
+        return;
       }
       if (droppableIdStart !== droppableIdEnd) {
         const listStart = state.boards[selectedBoard].lists.find(
           list => droppableIdStart === list.id,
         );
         const card = listStart.cards.splice(droppableIndexStart, 1);
+        const remainingCard = listStart.cards.splice(droppableIndexStart);
+        remainingCard.forEach(card => {
+          const numCardId = card.id.slice(-1);
+          card.id = `${droppableIdStart}-card-${numCardId - 1}`;
+        });
         const listEnd = state.boards[selectedBoard].lists.find(
           list => droppableIdEnd === list.id,
         );
+        const numIdListEnd = droppableIdEnd.slice(-1);
+        card[0].id = `${droppableIdEnd}-card-${state.boards[selectedBoard].lists[numIdListEnd].cards.length}`;
         listEnd.cards.splice(droppableIndexEnd, 0, ...card);
+        listStart.cards.splice(droppableIndexStart, 0, ...remainingCard);
       }
     },
   },
