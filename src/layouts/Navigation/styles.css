@@ -3,6 +3,7 @@
     background-color: #f09278;
     width: 260px;
     position: relative;
+    flex-shrink: 0;
 }
 
 .title__navigation {

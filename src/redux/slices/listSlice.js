@@ -12,12 +12,26 @@ const initialState = {
           name: 'To Do',
           isAdd: false,
           cards: [
-            { id: 0, name: 'Card 1', isEdit: false },
-            { id: 1, name: 'Card 2', isEdit: false },
+            {
+              id: 0,
+              name: 'Card 1',
+              isEdit: false,
+              description: '',
+              isOpenModal: false,
+            },
+            {
+              id: 1,
+              name: 'Card 2',
+              isEdit: false,
+              description: '',
+              isOpenModal: false,
+            },
             {
               id: 2,
               name: 'Card 3 and Etc bla bla vla bla bla vla bla vldddddddddddddddddddddddddddddddddddddddddd',
               isEdit: false,
+              description: 'bla',
+              isOpenModal: false,
             },
           ],
         },
@@ -68,6 +82,8 @@ const listSlice = createSlice({
       state.boards[selectedBoard].lists[idList].cards.push({
         name: name,
         isEdit: false,
+        description: '',
+        isOpenModal: false,
         id: state.boards[selectedBoard].lists[idList].cards.length,
       });
     },
@@ -155,6 +171,32 @@ const listSlice = createSlice({
         }
       });
     },
+    changeBoard(state, action) {
+      const { payload } = action;
+      state.selectedBoard = payload;
+    },
+    openModalDescriptionCard(state, action) {
+      const { idCard, idList, selectedBoard } = action.payload;
+      state.boards[selectedBoard].lists[idList].cards[
+        idCard
+      ].isOpenModal = true;
+    },
+    closeModalDescriptionCard(state, action) {
+      const { idCard, idList, selectedBoard } = action.payload;
+      state.boards[selectedBoard].lists[idList].cards[
+        idCard
+      ].isOpenModal = false;
+    },
+    saveDescriptionNameCard(state, action) {
+      const { idCard, idList, selectedBoard, textDescription, textName } =
+        action.payload;
+      if (textName === '') {
+      } else {
+        state.boards[selectedBoard].lists[idList].cards[idCard].name = textName;
+      }
+      state.boards[selectedBoard].lists[idList].cards[idCard].description =
+        textDescription;
+    },
   },
 });
 
@@ -178,4 +220,8 @@ export const {
   editBoard,
   closeEditBoard,
   deleteBoard,
+  changeBoard,
+  openModalDescriptionCard,
+  closeModalDescriptionCard,
+  saveDescriptionNameCard,
 } = listSlice.actions;

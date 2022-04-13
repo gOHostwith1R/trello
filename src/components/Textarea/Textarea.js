@@ -9,6 +9,7 @@ export const Textarea = ({
   placeholder,
   edit = true,
   handleTextarea,
+  name,
 }) => {
   const handleChangeTextarea = e => {
     if (type !== 'list__header') {
@@ -21,6 +22,7 @@ export const Textarea = ({
   };
   return (
     <div
+      name={name}
       contentEditable={edit}
       placeholder={placeholder}
       suppressContentEditableWarning={true}
@@ -31,6 +33,8 @@ export const Textarea = ({
         textarea__card: type === 'textarea__card',
         edit__card_textarea: type === 'edit__card',
         create__board: type === 'create__board',
+        modal__textarea: type === 'modal__textarea',
+        modal__textarea_description: type === 'modal__textarea_description',
       })}
       onInput={handleChangeTextarea}
       onKeyDown={handleKeydown}>

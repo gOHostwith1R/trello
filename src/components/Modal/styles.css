@@ -1,0 +1,45 @@
+.modal {
+    display: flex;
+    flex-direction: column;
+    background-color: #f4f5f7;
+    left: 220px;
+    top: 45px;
+    width: 350px;
+    height: 300px;
+    border-radius: 3px;
+    position: absolute;
+    z-index: 99;
+    padding: 10px;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.modal__list {
+    color: #5e6c84;
+}
+
+.modal__body {
+    width: 100%;
+}
+
+.wrapper__modal-list {
+    display: inline-block;
+    color: #5e6c84;
+}
+
+.modal-list__name {
+    text-decoration: underline;
+}
+
+.title__modal {
+    width: 100%;
+}
+
+.modal__description {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.wrapper__modal-textarea {
+    display: flex;
+}

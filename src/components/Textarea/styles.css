@@ -24,7 +24,9 @@
 }
 
 .list__header:focus,
-.create__board:focus {
+.create__board:focus,
+.modal__textarea:focus,
+.modal__textarea_description:focus{
     box-shadow: inset 0 0 0 2px #0079bf;
     background-color: #ffffff;
     outline: none;
@@ -52,4 +54,17 @@
 .create__board {
     box-shadow: inset 0 0 0 2px #0079bf;
     background-color: #ffffff;
+}
+
+.modal__textarea {
+    font-weight: 600;
+}
+
+.modal__textarea_description {
+    background-color: #091e420a;
+    min-height: 40px;
+}
+
+.modal__textarea_description:focus {
+    min-height: 100px;
 }

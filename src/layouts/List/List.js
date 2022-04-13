@@ -35,6 +35,9 @@ export const List = ({
           idCard={card.id}
           idList={idList}
           selectedBoard={selectedBoard}
+          isOpenModal={card.isOpenModal}
+          description={card.description}
+          listName={name}
         />
       ))}
       {isAdd ? (
