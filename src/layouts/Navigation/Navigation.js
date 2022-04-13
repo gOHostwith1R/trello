@@ -8,6 +8,7 @@ import { openCreateBoard } from '../../redux/slices/listSlice';
 export const Navigation = ({ boards }) => {
   const dispatch = useDispatch();
   const creteNewBoard = useSelector(state => state.list.creteNewBoard);
+  const userActivity = useSelector(state => state.list.userActivity);
   return (
     <nav className="navigation">
       <div className="navigation__wrapper">
@@ -25,6 +26,14 @@ export const Navigation = ({ boards }) => {
             idBoard={board.id}
             isEdit={board.isEditBoard}
           />
+        ))}
+      </div>
+      <div className="wrapper_log">
+        <h3>User activity</h3>
+        {userActivity.map((elem, index) => (
+          <p className="item__user-activity" key={index}>
+            {elem}
+          </p>
         ))}
       </div>
       {creteNewBoard && <AddBoard />}

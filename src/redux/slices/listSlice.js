@@ -54,6 +54,8 @@ const initialState = {
   openNewList: false,
   creteNewBoard: false,
   selectedBoard: 0,
+  userName: 'User',
+  userActivity: [],
 };
 
 const listSlice = createSlice({
@@ -198,7 +200,6 @@ const listSlice = createSlice({
     },
     openModalDescriptionCard(state, action) {
       const { idCard, idList, selectedBoard } = action.payload;
-      console.log(idCard, idList);
       const numIdCard = idCard.slice(-1);
       const numIdList = idList.slice(-1);
       state.boards[selectedBoard].lists[numIdList].cards[
@@ -284,6 +285,9 @@ const listSlice = createSlice({
         listStart.cards.splice(droppableIndexStart, 0, ...remainingCard);
       }
     },
+    changeUserActivity(state, action) {
+      state.userActivity.push(`${state.userName} ${action.payload}`);
+    },
   },
 });
 
@@ -311,5 +315,6 @@ export const {
   openModalDescriptionCard,
   closeModalDescriptionCard,
   saveDescriptionNameCard,
+  changeUserActivity,
   sort,
 } = listSlice.actions;

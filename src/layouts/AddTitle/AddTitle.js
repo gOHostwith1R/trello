@@ -3,7 +3,12 @@ import './styles.css';
 import { Button, CanselIcon, Textarea } from '../../components';
 import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
-import { createCard, createList, setCLose } from '../../redux/slices/listSlice';
+import {
+  changeUserActivity,
+  createCard,
+  createList,
+  setCLose,
+} from '../../redux/slices/listSlice';
 
 export const AddTitle = ({
   idList,
@@ -25,9 +30,11 @@ export const AddTitle = ({
       if (id !== undefined) {
         dispatch(createCard({ selectedBoard, idList, name }));
         dispatch(setCLose({ idList, selectedBoard }));
+        dispatch(changeUserActivity('created card'));
       } else {
         dispatch(createList({ name, selectedBoard }));
         dispatch(setCLose());
+        dispatch(changeUserActivity('created list'));
       }
     }
   };

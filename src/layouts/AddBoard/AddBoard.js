@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import './styles.css';
 import { Button, CanselIcon, Textarea } from '../../components';
 import { useDispatch } from 'react-redux';
-import { closeCreateBoard, createBoard } from '../../redux/slices/listSlice';
+import {
+  changeUserActivity,
+  closeCreateBoard,
+  createBoard,
+} from '../../redux/slices/listSlice';
 
 export const AddBoard = () => {
   const [text, setText] = useState('');
@@ -11,6 +15,7 @@ export const AddBoard = () => {
   const handleCreate = () => {
     dispatch(createBoard(text));
     dispatch(closeCreateBoard());
+    dispatch(changeUserActivity('created a new board'));
   };
 
   const handleTextarea = text => {

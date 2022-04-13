@@ -3,6 +3,7 @@ import './styles.css';
 import { Button, Textarea } from '../../components';
 import { useDispatch } from 'react-redux';
 import {
+  changeUserActivity,
   closeEditCard,
   deleteCard,
   editCard,
@@ -18,11 +19,13 @@ export const EditCard = ({ value, idCard, idList, selectedBoard }) => {
   const handleSaveEditCard = () => {
     dispatch(editCard({ idCard, idList, text, selectedBoard }));
     dispatch(closeEditCard({ idCard, idList, selectedBoard }));
+    dispatch(changeUserActivity('edited card'));
   };
 
   const handleDeleteCard = () => {
     dispatch(closeEditCard({ idCard, idList, selectedBoard }));
     dispatch(deleteCard({ idCard, idList, selectedBoard }));
+    dispatch(changeUserActivity('deleted card'));
   };
   return (
     <div className="wrapper__edit-card">

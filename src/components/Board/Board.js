@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import './styles.css';
 import { useDispatch } from 'react-redux';
-import { changeBoard, openEditBoard } from '../../redux/slices/listSlice';
+import {
+  changeBoard,
+  changeUserActivity,
+  openEditBoard,
+} from '../../redux/slices/listSlice';
 import { EditBoard } from '../../layouts';
 
 export const Board = ({ name, idBoard, isEdit }) => {
@@ -13,6 +17,7 @@ export const Board = ({ name, idBoard, isEdit }) => {
 
   const handleChangeBoard = () => {
     dispatch(changeBoard(idBoard));
+    dispatch(changeUserActivity('changed board'));
   };
 
   return (

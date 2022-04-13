@@ -2,7 +2,7 @@ import './styles.css';
 import { AddList, AddTitle, List, ListWrapper, Navigation } from '../layouts';
 import { useDispatch, useSelector } from 'react-redux';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import { sort } from '../redux/slices/listSlice';
+import { changeUserActivity, sort } from '../redux/slices/listSlice';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -25,6 +25,11 @@ export const App = () => {
         selectedBoard,
       }),
     );
+    if (type === 'list') {
+      dispatch(changeUserActivity('moved list'));
+    } else {
+      dispatch(changeUserActivity('moved card'));
+    }
   };
   return (
     <div className="app">

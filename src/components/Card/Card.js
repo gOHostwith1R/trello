@@ -45,9 +45,9 @@ export const Card = ({
             />
             <div
               className="pen__wrapper"
-              onClick={() =>
-                dispatch(setEditCard({ idCard, idList, selectedBoard }))
-              }>
+              onClick={() => {
+                dispatch(setEditCard({ idCard, idList, selectedBoard }));
+              }}>
               {visibility && (
                 <img
                   className="pen__card"

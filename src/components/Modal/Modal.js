@@ -5,6 +5,7 @@ import { Button } from '../Button';
 import { CanselIcon } from '../CanselIcon';
 import { useDispatch } from 'react-redux';
 import {
+  changeUserActivity,
   closeModalDescriptionCard,
   saveDescriptionNameCard,
 } from '../../redux/slices/listSlice';
@@ -42,6 +43,7 @@ export const Modal = ({
         textName,
       }),
     );
+    dispatch(changeUserActivity('added description'));
   };
 
   return (
